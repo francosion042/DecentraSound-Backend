@@ -1,3 +1,5 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class UsersController {}
+export default class UsersController {
+  public async me({ request }: HttpContextContract) {}
+}
