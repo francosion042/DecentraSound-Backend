@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -229,
-    "scrollLeft": -54,
-    "zoomLevel": 1,
+    "scrollTop": -265,
+    "scrollLeft": -94,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -189,7 +189,7 @@
           "active": false,
           "left": 724,
           "top": 414,
-          "zIndex": 295,
+          "zIndex": 302,
           "widthName": 60,
           "widthComment": 60
         },
@@ -578,7 +578,7 @@
             "id": "4da52820-4b36-46f1-936d-b0c8e194e518"
           },
           {
-            "name": "",
+            "name": "releaseDate",
             "comment": "",
             "dataType": "",
             "default": "",
@@ -593,7 +593,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 72.09716796875,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -651,7 +651,7 @@
           "active": false,
           "left": 111,
           "top": 485,
-          "zIndex": 290,
+          "zIndex": 298,
           "widthName": 60,
           "widthComment": 60
         },
@@ -799,13 +799,36 @@
               "widthDefault": 60
             },
             "id": "a659dfb8-e465-4e91-9b9b-9167f00fdc2d"
+          },
+          {
+            "name": "tokenId",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "040b729d-d659-4c29-b6f7-d22cc4b90d76"
           }
         ],
         "ui": {
-          "active": false,
-          "left": 351.2223,
-          "top": 861.8887,
-          "zIndex": 291,
+          "active": true,
+          "left": 332.6667,
+          "top": 860.7776,
+          "zIndex": 306,
           "widthName": 60,
           "widthComment": 60
         },
@@ -888,9 +911,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 946,
-          "top": 686,
-          "zIndex": 177,
+          "left": 1014,
+          "top": 749,
+          "zIndex": 301,
           "widthName": 70.62451171875,
           "widthComment": 60
         },
@@ -1093,7 +1116,7 @@
           "columnIds": [
             "095cc000-7db0-4eb6-a1c8-3e25b5dc4537"
           ],
-          "x": 200.588623046875,
+          "x": 200.7742919921875,
           "y": 485,
           "direction": "top"
         },
@@ -1119,8 +1142,8 @@
           "columnIds": [
             "c9a49458-5bdb-4d50-8e35-441d10a26925"
           ],
-          "x": 524.7223,
-          "y": 861.8887,
+          "x": 506.1667,
+          "y": 860.7776,
           "direction": "top"
         },
         "constraintName": "fk_artist_to_song",
@@ -1188,7 +1211,7 @@
           "columnIds": [
             "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
           ],
-          "x": 469.3544921875,
+          "x": 470.09716796875,
           "y": 642.5,
           "direction": "right"
         },
@@ -1240,8 +1263,8 @@
           "columnIds": [
             "ceb8a3af-7cbf-44d6-9c4b-1c62ea03e6b3"
           ],
-          "x": 698.2223,
-          "y": 957.8887,
+          "x": 679.6667,
+          "y": 967.0276,
           "direction": "right"
         },
         "end": {
@@ -1275,7 +1298,7 @@
           "columnIds": [
             "32b9ffdf-18cb-40d2-af30-ed60f1152a1b"
           ],
-          "x": 379.765869140625,
+          "x": 380.3228759765625,
           "y": 485,
           "direction": "top"
         },
