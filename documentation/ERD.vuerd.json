@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -265,
-    "scrollLeft": -94,
+    "scrollTop": -390,
+    "scrollLeft": -86,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -463,6 +463,29 @@
             "id": "508ee3f0-b438-459b-ba94-6b0720fad223"
           },
           {
+            "name": "blockchain",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.42626953125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "151364df-4003-4dc4-9ccc-6454b2e70a80"
+          },
+          {
             "name": "artistId",
             "comment": "",
             "dataType": "",
@@ -621,29 +644,6 @@
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "151364df-4003-4dc4-9ccc-6454b2e70a80"
-          },
-          {
-            "name": "",
-            "comment": "",
-            "dataType": "",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
             "id": "361f6f59-f681-49a4-8697-0155250660b8"
           }
         ],
@@ -651,7 +651,7 @@
           "active": false,
           "left": 111,
           "top": 485,
-          "zIndex": 298,
+          "zIndex": 319,
           "widthName": 60,
           "widthComment": 60
         },
@@ -709,7 +709,7 @@
             "id": "db3c87f4-6d8e-4960-a848-926206fcd05f"
           },
           {
-            "name": "albumId",
+            "name": "tokenId",
             "comment": "",
             "dataType": "",
             "default": "",
@@ -729,7 +729,7 @@
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "5c555406-21c5-45f3-b9f3-25ed9facf03c"
+            "id": "040b729d-d659-4c29-b6f7-d22cc4b90d76"
           },
           {
             "name": "artistId",
@@ -753,6 +753,29 @@
               "widthDefault": 60
             },
             "id": "c9a49458-5bdb-4d50-8e35-441d10a26925"
+          },
+          {
+            "name": "albumId",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "cd2b4ffb-d901-41b6-9902-53cd465bcdbf"
           },
           {
             "name": "imageUrl",
@@ -801,7 +824,7 @@
             "id": "a659dfb8-e465-4e91-9b9b-9167f00fdc2d"
           },
           {
-            "name": "tokenId",
+            "name": "blockchain",
             "comment": "",
             "dataType": "",
             "default": "",
@@ -816,19 +839,42 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 63.42626953125,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "040b729d-d659-4c29-b6f7-d22cc4b90d76"
+            "id": "c4c2d80b-8f40-4a08-88bf-0caae40cf03b"
+          },
+          {
+            "name": "contractAddress",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.9326171875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "22a2f343-445a-4710-a22c-5dac4bb7a35a"
           }
         ],
         "ui": {
           "active": true,
           "left": 332.6667,
           "top": 860.7776,
-          "zIndex": 306,
+          "zIndex": 325,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1142,7 +1188,7 @@
           "columnIds": [
             "c9a49458-5bdb-4d50-8e35-441d10a26925"
           ],
-          "x": 506.1667,
+          "x": 524.13300859375,
           "y": 860.7776,
           "direction": "top"
         },
@@ -1263,8 +1309,8 @@
           "columnIds": [
             "ceb8a3af-7cbf-44d6-9c4b-1c62ea03e6b3"
           ],
-          "x": 679.6667,
-          "y": 967.0276,
+          "x": 715.5993171875,
+          "y": 987.5276,
           "direction": "right"
         },
         "end": {
@@ -1305,6 +1351,32 @@
         "constraintName": "fk_genre_to_album",
         "visible": true,
         "id": "05ecb069-2273-4ecf-bb22-6c3b0f818920"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "fa559925-bbb7-40d2-be04-13592172aa44",
+          "columnIds": [
+            "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
+          ],
+          "x": 290.548583984375,
+          "y": 800,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "2920d932-b2b9-42b4-9651-7150bbc96402",
+          "columnIds": [
+            "cd2b4ffb-d901-41b6-9902-53cd465bcdbf"
+          ],
+          "x": 332.6667,
+          "y": 987.5276,
+          "direction": "left"
+        },
+        "constraintName": "fk_album_to_song",
+        "visible": true,
+        "id": "7212e602-ad5d-4736-b6ba-a633f0f00c52"
       }
     ]
   }
