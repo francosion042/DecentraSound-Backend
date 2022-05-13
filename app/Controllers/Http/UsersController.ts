@@ -5,7 +5,7 @@ import { extractRaribleMusicAssets } from 'App/Utils'
 import UserValidator from 'App/Validators/user'
 
 export default class UsersController {
-  public async create({ request }: HttpContextContract) {
+  public async store({ request }: HttpContextContract) {
     const { address } = request.body()
 
     const user = await User.updateOrCreate({ address }, { address })
@@ -24,7 +24,7 @@ export default class UsersController {
   }
 
   public async getUserOwnedSongs({ params }: HttpContextContract) {
-    const { userId } = params
+    const userId = params.user_id
 
     const user = await User.findByOrFail('id', userId)
 

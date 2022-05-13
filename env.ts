@@ -12,21 +12,29 @@
 |
 */
 
+const isDev = () => process.env.NODE_ENV === 'development'
+const isProd = () => process.env.NODE_ENV === 'production'
+
 import Env from '@ioc:Adonis/Core/Env'
 
 export default Env.rules({
-  HOST: Env.schema.string({ format: 'host' }),
-  PORT: Env.schema.number(),
+  HOST: isDev()
+    ? Env.schema.string({ format: 'host' })
+    : Env.schema.string.optional({ format: 'host' }),
+  PORT: isDev() ? Env.schema.number() : Env.schema.number.optional(),
   APP_KEY: Env.schema.string(),
-  APP_NAME: Env.schema.string(),
+  APP_NAME: Env.schema.string.optional(),
   DRIVE_DISK: Env.schema.enum(['local'] as const),
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
   DB_CONNECTION: Env.schema.string(),
-  PG_HOST: Env.schema.string({ format: 'host' }),
-  PG_PORT: Env.schema.number(),
-  PG_USER: Env.schema.string(),
-  PG_PASSWORD: Env.schema.string.optional(),
-  PG_DB_NAME: Env.schema.string(),
+  DATABASE_URL: isProd() ? Env.schema.string() : Env.schema.string.optional(),
+  PG_HOST: isDev()
+    ? Env.schema.string({ format: 'host' })
+    : Env.schema.string.optional({ format: 'host' }),
+  PG_PORT: isDev() ? Env.schema.number() : Env.schema.number.optional(),
+  PG_USER: isDev() ? Env.schema.string() : Env.schema.string.optional(),
+  PG_PASSWORD: isDev() ? Env.schema.string() : Env.schema.string.optional(),
+  PG_DB_NAME: isDev() ? Env.schema.string() : Env.schema.string.optional(),
 
   OPENSEA_API_BASE_URL: Env.schema.string(),
   OPENSEA_API_KEY: Env.schema.string(),
