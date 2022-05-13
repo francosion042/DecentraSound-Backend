@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -390,
-    "scrollLeft": -86,
-    "zoomLevel": 0.9,
+    "scrollTop": -142,
+    "scrollLeft": -125,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -871,7 +871,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 332.6667,
           "top": 860.7776,
           "zIndex": 325,
@@ -967,7 +967,7 @@
         "id": "7ddd0785-ee6b-4aff-a234-b624178d9a5a"
       },
       {
-        "name": "UserAlbum",
+        "name": "UserSavedAlbum",
         "comment": "",
         "columns": [
           {
@@ -1041,18 +1041,18 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 1216,
           "top": 154,
-          "zIndex": 248,
-          "widthName": 66.29541015625,
+          "zIndex": 331,
+          "widthName": 103.15625,
           "widthComment": 60
         },
         "visible": true,
         "id": "b1ca18cb-139b-4dd6-8f4f-85ed9950c8ef"
       },
       {
-        "name": "UserSong",
+        "name": "UserSavedSong",
         "comment": "",
         "columns": [
           {
@@ -1129,8 +1129,8 @@
           "active": false,
           "left": 1288,
           "top": 470,
-          "zIndex": 239,
-          "widthName": 60,
+          "zIndex": 328,
+          "widthName": 96.6689453125,
           "widthComment": 60
         },
         "visible": true,

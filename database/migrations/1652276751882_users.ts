@@ -7,6 +7,11 @@ export default class Users extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.string('address').notNullable
+      table.string('email')
+      table.string('name')
+      table.string('userType').defaultTo('Listener')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
