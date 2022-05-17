@@ -1,4 +1,5 @@
 import { SongPayload } from 'App/Types'
+import CustomException from 'App/Exceptions/CustomException'
 
 export const extractRaribleMusicAssets = (data) => {
   const musicAssets: SongPayload[] = []
@@ -22,4 +23,12 @@ export const extractRaribleMusicAssets = (data) => {
   }
 
   return musicAssets
+}
+
+export const errorHandler = (error: any) => {
+  // console.log(error.response)
+  throw new CustomException(
+    error?.response?.statusText ?? error.message ?? 'Unknown',
+    error?.response?.status ?? error.status ?? 400
+  )
 }

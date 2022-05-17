@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
+import { errorHandler } from 'App/utils'
 import { GetAssetsByOwnerRequestBody } from 'App/Types/raribleServiceTypes'
 
 export default class RaribleAPIService {
@@ -19,7 +20,7 @@ export default class RaribleAPIService {
       }
       return response.data
     } catch (error) {
-      console.log(error)
+      errorHandler(error)
     }
   }
 }
