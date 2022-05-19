@@ -19,11 +19,13 @@ export default class Albums extends BaseSchema {
 
       table.string('blockchain')
 
+      table.string('contractType') // [ERC721, ERC1155]
+
       table.string('marketPlace')
 
-      table.text('openseaPermalink')
+      table.text('openseaIdentifier') //slug
 
-      table.text('rariblePermalink')
+      table.text('raribleIdentifier')
 
       table.text('coverImageUrl')
 

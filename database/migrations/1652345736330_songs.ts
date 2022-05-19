@@ -21,6 +21,10 @@ export default class Songs extends BaseSchema {
 
       table.text('contractAddress').notNullable()
 
+      table.text('openseaPermalink')
+
+      table.text('rariblePermalink')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

@@ -31,6 +31,12 @@ export default class Song extends BaseModel {
   @column()
   public albumId: number
 
+  @column()
+  public openseaPermalink: string
+
+  @column()
+  public rariblePermalink: string
+
   @belongsTo(() => Artist, {
     foreignKey: 'artistId',
   })

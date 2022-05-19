@@ -21,6 +21,9 @@ export default class Album extends BaseModel {
   public blockchain: string
 
   @column()
+  public contractType: string // [ERC721, ERC1155]
+
+  @column()
   public totalSongs: number
 
   @column()
@@ -33,10 +36,10 @@ export default class Album extends BaseModel {
   public marketPlace: string
 
   @column()
-  public openseaPermalink: string
+  public openseaIdentifier: string //slug
 
   @column()
-  public rariblePermalink: string
+  public raribleIdentifier: string
 
   @column()
   public coverImageUrl: string
