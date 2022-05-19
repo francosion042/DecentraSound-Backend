@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Artist from './Artist'
 import Genre from './Genre'
+import Song from './Song'
 
 export default class Album extends BaseModel {
   @column({ isPrimary: true })
@@ -46,6 +47,11 @@ export default class Album extends BaseModel {
     foreignKey: 'genreId',
   })
   public genre: BelongsTo<typeof Genre>
+
+  @hasMany(() => Song, {
+    foreignKey: 'albumId',
+  })
+  public songs: HasMany<typeof Song>
 
   @column.dateTime({ autoCreate: false })
   public releaseDate: DateTime
