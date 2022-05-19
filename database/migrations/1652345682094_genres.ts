@@ -7,6 +7,10 @@ export default class Genres extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.string('title').notNullable()
+
+      table.text('description')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

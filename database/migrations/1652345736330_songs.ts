@@ -7,6 +7,20 @@ export default class Songs extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.integer('artistId').unsigned().references('artists.id').onDelete('CASCADE')
+
+      table.integer('albumId').unsigned().references('albums.id').onDelete('CASCADE')
+
+      table.string('title').notNullable()
+
+      table.string('blockchain')
+
+      table.text('imageUrl')
+
+      table.text('audioUrl').notNullable()
+
+      table.text('contractAddress').notNullable()
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

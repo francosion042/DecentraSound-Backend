@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -142,
-    "scrollLeft": -125,
+    "scrollTop": -84,
+    "scrollLeft": -87,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -340,7 +340,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": true
+              "notNull": false
             },
             "ui": {
               "active": false,
@@ -353,13 +353,36 @@
               "widthDefault": 60
             },
             "id": "5a5b2e7a-f69c-4f1d-acb5-797298f2d1ca"
+          },
+          {
+            "name": "description",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.8671875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "bc8ba3cc-f81d-4813-b59f-ee8cd65fe33c"
           }
         ],
         "ui": {
           "active": false,
           "left": 244,
           "top": 239,
-          "zIndex": 176,
+          "zIndex": 345,
           "widthName": 60,
           "widthComment": 60
         },
@@ -555,29 +578,6 @@
             "id": "f94e51be-3faa-48a5-8056-88ffad19503d"
           },
           {
-            "name": "externalUrls",
-            "comment": "",
-            "dataType": "json",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 71.3544921875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "75e8ed96-ab19-4140-a814-35694c7dfcfe"
-          },
-          {
             "name": "totalSongs",
             "comment": "",
             "dataType": "",
@@ -624,7 +624,7 @@
             "id": "e20d3c8d-76e3-46e8-8052-fef9283e4e74"
           },
           {
-            "name": "",
+            "name": "openseaPermalink",
             "comment": "",
             "dataType": "",
             "default": "",
@@ -639,19 +639,42 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 109.67529296875,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
             "id": "361f6f59-f681-49a4-8697-0155250660b8"
+          },
+          {
+            "name": "rariblePermalink",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.919921875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "124bca7a-e993-4996-a9a4-84d67e8575ff"
           }
         ],
         "ui": {
           "active": false,
           "left": 111,
           "top": 485,
-          "zIndex": 319,
+          "zIndex": 340,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1041,7 +1064,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1216,
           "top": 154,
           "zIndex": 331,
@@ -1153,8 +1176,8 @@
           "columnIds": [
             "37882471-b893-4f4b-8d52-731df27f24c6"
           ],
-          "x": 330.75,
-          "y": 369.5,
+          "x": 331.966796875,
+          "y": 390,
           "direction": "bottom"
         },
         "end": {
@@ -1162,7 +1185,7 @@
           "columnIds": [
             "095cc000-7db0-4eb6-a1c8-3e25b5dc4537"
           ],
-          "x": 200.7742919921875,
+          "x": 210.1688232421875,
           "y": 485,
           "direction": "top"
         },
@@ -1179,8 +1202,8 @@
           "columnIds": [
             "37882471-b893-4f4b-8d52-731df27f24c6"
           ],
-          "x": 504.25,
-          "y": 369.5,
+          "x": 507.900390625,
+          "y": 390,
           "direction": "bottom"
         },
         "end": {
@@ -1199,7 +1222,7 @@
       {
         "identification": false,
         "relationshipType": "ZeroOne",
-        "startRelationshipType": "Dash",
+        "startRelationshipType": "Ring",
         "start": {
           "tableId": "d2eb1808-311e-4b83-80b8-61bb2e925b56",
           "columnIds": [
@@ -1214,8 +1237,8 @@
           "columnIds": [
             "5a5b2e7a-f69c-4f1d-acb5-797298f2d1ca"
           ],
-          "x": 591,
-          "y": 304.25,
+          "x": 595.8671875,
+          "y": 314.5,
           "direction": "right"
         },
         "constraintName": "fk_user_to_artist",
@@ -1257,7 +1280,7 @@
           "columnIds": [
             "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
           ],
-          "x": 470.09716796875,
+          "x": 507.67529296875,
           "y": 642.5,
           "direction": "right"
         },
@@ -1344,7 +1367,7 @@
           "columnIds": [
             "32b9ffdf-18cb-40d2-af30-ed60f1152a1b"
           ],
-          "x": 380.3228759765625,
+          "x": 408.5064697265625,
           "y": 485,
           "direction": "top"
         },
@@ -1361,7 +1384,7 @@
           "columnIds": [
             "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
           ],
-          "x": 290.548583984375,
+          "x": 309.337646484375,
           "y": 800,
           "direction": "bottom"
         },

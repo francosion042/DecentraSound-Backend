@@ -1,9 +1,54 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import Artist from './Artist'
+import Genre from './Genre'
 
 export default class Album extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public name: string
+
+  @column()
+  public description: string
+
+  @column()
+  public contractAddress: string
+
+  @column()
+  public blockchain: string
+
+  @column()
+  public totalSongs: number
+
+  @column()
+  public artistId: number
+
+  @column()
+  public genreId: number
+
+  @column()
+  public openseaPermalink: string
+
+  @column()
+  public rariblePermalink: string
+
+  @column()
+  public coverImageUrl: string
+
+  @belongsTo(() => Artist, {
+    foreignKey: 'artistId',
+  })
+  public artist: BelongsTo<typeof Artist>
+
+  @belongsTo(() => Genre, {
+    foreignKey: 'genreId',
+  })
+  public genre: BelongsTo<typeof Genre>
+
+  @column.dateTime({ autoCreate: false })
+  public releaseDate: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

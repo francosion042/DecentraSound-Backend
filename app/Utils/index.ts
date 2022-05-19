@@ -12,6 +12,7 @@ export const extractRaribleMusicAssets = (data) => {
       } else if (itemContent['@type'] === 'VIDEO' && itemContent['mimeType'] === 'audio/wav') {
         musicAssets.push({
           title: item.meta.name,
+          artist: 'Artist',
           tokenId: item.tokenId,
           blockchain: item.blockchain,
           imageUrl: itemImageUrl,

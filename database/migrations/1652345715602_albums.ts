@@ -7,6 +7,28 @@ export default class Albums extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.integer('artistId').unsigned().references('artists.id').onDelete('CASCADE')
+
+      table.integer('genreId').unsigned().references('genres.id').onDelete('SET NULL')
+
+      table.string('name').notNullable()
+
+      table.text('description')
+
+      table.text('contractAddress')
+
+      table.string('blockchain')
+
+      table.text('openseaPermalink')
+
+      table.text('rariblePermalink')
+
+      table.text('coverImageUrl')
+
+      table.integer('totalSongs')
+
+      table.timestamp('releaseDate', { useTz: false })
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
