@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -84,
-    "scrollLeft": -87,
+    "scrollTop": -66,
+    "scrollLeft": -65,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -379,10 +379,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 244,
-          "top": 239,
-          "zIndex": 345,
+          "active": true,
+          "left": 222,
+          "top": 228,
+          "zIndex": 346,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1176,8 +1176,8 @@
           "columnIds": [
             "37882471-b893-4f4b-8d52-731df27f24c6"
           ],
-          "x": 331.966796875,
-          "y": 390,
+          "x": 309.966796875,
+          "y": 379,
           "direction": "bottom"
         },
         "end": {
@@ -1202,8 +1202,8 @@
           "columnIds": [
             "37882471-b893-4f4b-8d52-731df27f24c6"
           ],
-          "x": 507.900390625,
-          "y": 390,
+          "x": 485.900390625,
+          "y": 379,
           "direction": "bottom"
         },
         "end": {
@@ -1237,8 +1237,8 @@
           "columnIds": [
             "5a5b2e7a-f69c-4f1d-acb5-797298f2d1ca"
           ],
-          "x": 595.8671875,
-          "y": 314.5,
+          "x": 573.8671875,
+          "y": 303.5,
           "direction": "right"
         },
         "constraintName": "fk_user_to_artist",

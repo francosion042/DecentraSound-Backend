@@ -19,6 +19,8 @@ export default class Albums extends BaseSchema {
 
       table.string('blockchain')
 
+      table.string('marketPlace')
+
       table.text('openseaPermalink')
 
       table.text('rariblePermalink')

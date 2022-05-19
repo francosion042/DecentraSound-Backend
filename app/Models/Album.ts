@@ -30,6 +30,9 @@ export default class Album extends BaseModel {
   public genreId: number
 
   @column()
+  public marketPlace: string
+
+  @column()
   public openseaPermalink: string
 
   @column()
