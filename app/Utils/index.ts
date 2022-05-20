@@ -1,5 +1,6 @@
 import { SongPayload, AlbumPayload } from 'App/Types'
 import CustomException from 'App/Exceptions/CustomException'
+import { DateTime } from 'luxon'
 
 export const extractRaribleMusicAssets = (data) => {
   const musicAssets: SongPayload[] = []
@@ -39,6 +40,7 @@ export const extractOpenSeaAlbum = ({ collection }) => {
     marketPlace: 'OpenSea',
     openseaIdentifier: collection.slug,
     coverImageUrl: collection.image_url,
+    releaseDate: DateTime.fromJSDate(new Date(collection.primary_asset_contracts[0].created_date)),
   }
 
   return album

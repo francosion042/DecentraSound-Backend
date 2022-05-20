@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon'
+
 export interface SongPayload {
   title: string
   artist: string
@@ -25,4 +27,5 @@ export interface AlbumPayload {
   openseaIdentifier?: string
   raribleIdentifier?: string
   coverImageUrl?: string
+  releaseDate: DateTime
 }
