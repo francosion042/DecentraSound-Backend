@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Artist from 'App/Models/Artist'
+import { Store } from 'App/Validators/artist'
 
 export default class ArtistsController {
   public async index({}: HttpContextContract) {
@@ -11,7 +12,13 @@ export default class ArtistsController {
     }
   }
 
-  // public async store({ request }: HttpContextContract) {}
+  public async store({ request }: HttpContextContract) {
+    const payload = await request.validate(Store)
+
+    const artist = await Artist.create(payload)
+
+    return { status: 200, data: artist }
+  }
 
   // public async show({ params }: HttpContextContract) {}
 

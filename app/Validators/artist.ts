@@ -8,6 +8,7 @@ export class Store {
   public schema = schema.create({
     name: schema.string({ trim: true }),
     description: schema.string.optional(),
+    userId: schema.number.optional(),
   })
 
   /**
@@ -30,6 +31,7 @@ export class Update {
   public schema = schema.create({
     name: schema.string.optional({ trim: true }),
     description: schema.string.optional(),
+    userId: schema.number.optional(),
   })
 
   /**
