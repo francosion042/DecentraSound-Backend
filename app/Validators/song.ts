@@ -6,10 +6,11 @@ export class Store {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    title: schema.string({ trim: true }),
-    blockchain: schema.string.optional(),
+    marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
+    openseaSlug: schema.string.optional({ trim: true }),
+    contractAddress: schema.string.optional({ trim: true }),
+    rarible: schema.string.optional({ trim: true }),
   })
-
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`
    * for targeting nested fields and array expressions `(*)` for targeting all

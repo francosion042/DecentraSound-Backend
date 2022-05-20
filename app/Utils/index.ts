@@ -1,4 +1,4 @@
-import { SongPayload } from 'App/Types'
+import { SongPayload, AlbumPayload } from 'App/Types'
 import CustomException from 'App/Exceptions/CustomException'
 
 export const extractRaribleMusicAssets = (data) => {
@@ -24,6 +24,24 @@ export const extractRaribleMusicAssets = (data) => {
   }
 
   return musicAssets
+}
+
+export const extractOpenSeaMusicAssets = (data) => {
+  const musicAssets: SongPayload[] = []
+}
+
+export const extractOpenSeaAlbum = ({ collection }) => {
+  const album: AlbumPayload = {
+    name: collection.name,
+    description: collection.description,
+    contractAddress: collection.primary_asset_contracts[0].address,
+    contractType: collection.primary_asset_contracts[0].schema_name,
+    marketPlace: 'OpenSea',
+    openseaIdentifier: collection.slug,
+    coverImageUrl: collection.image_url,
+  }
+
+  return album
 }
 
 export const errorHandler = (error: any) => {

@@ -9,11 +9,11 @@ import {
 export default class OpenSeaAPIService {
   public static async getAssetsByCollection(data: GetAssetsByCollectionRequestBody) {
     const params = {
-      collection_slug: data.collection_slug,
-      asset_contract_address: data.asset_contract_address,
+      ...(data.collection_slug && { collection_slug: data.collection_slug }),
+      ...(data.asset_contract_address && { asset_contract_address: data.asset_contract_address }),
+      ...(data.cursor && { cursor: data.cursor }),
       limit: 50,
       include_orders: false,
-      cursor: data.cursor,
     }
     try {
       const response = await axios.get(`${Env.get('OPENSEA_API_BASE_URL')}/assets`, {
@@ -24,7 +24,6 @@ export default class OpenSeaAPIService {
       if (response.status === 200 && response.data) {
         return response.data
       }
-      return response.data
     } catch (error) {
       errorHandler(error)
     }
@@ -40,7 +39,6 @@ export default class OpenSeaAPIService {
       if (response.status === 200 && response.data) {
         return response.data
       }
-      return response.data
     } catch (error) {
       errorHandler(error)
     }

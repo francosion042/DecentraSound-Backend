@@ -18,7 +18,6 @@ export default class RaribleAPIService {
       if (response.status === 200 && response.data) {
         return response.data
       }
-      return response.data
     } catch (error) {
       errorHandler(error)
     }

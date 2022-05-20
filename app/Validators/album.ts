@@ -9,6 +9,7 @@ export class Store {
     marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
     openseaSlug: schema.string.optional({ trim: true }),
     contractAddress: schema.string.optional({ trim: true }),
+    blockchain: schema.string.optional(),
     rarible: schema.string.optional({ trim: true }),
   })
 
