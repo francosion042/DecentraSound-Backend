@@ -7,6 +7,8 @@ export default class Songs extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.string('tokenId').notNullable()
+
       table.integer('artistId').unsigned().references('artists.id').onDelete('CASCADE')
 
       table.integer('albumId').unsigned().references('albums.id').onDelete('CASCADE')

@@ -2,9 +2,8 @@ import { DateTime } from 'luxon'
 
 export interface SongPayload {
   title: string
-  artist: string
   tokenId: string
-  blockchain: string
+  blockchain?: string
   imageUrl: string
   audioUrl: string
   contractAddress: string

@@ -13,7 +13,6 @@ export const extractRaribleMusicAssets = (data) => {
       } else if (itemContent['@type'] === 'VIDEO' && itemContent['mimeType'] === 'audio/wav') {
         musicAssets.push({
           title: item.meta.name,
-          artist: 'Artist',
           tokenId: item.tokenId,
           blockchain: item.blockchain,
           imageUrl: itemImageUrl,
@@ -27,8 +26,25 @@ export const extractRaribleMusicAssets = (data) => {
   return musicAssets
 }
 
-export const extractOpenSeaMusicAssets = (data) => {
+export const extractOpenSeaMusicAssets = (assets, albumId, artistId) => {
   const musicAssets: SongPayload[] = []
+
+  for (const asset of assets) {
+    if (asset.animation_url && asset.animation_url.endsWith('mp3')) {
+      musicAssets.push({
+        title: asset.name,
+        tokenId: asset.token_id,
+        imageUrl: asset.image_url,
+        audioUrl: asset.animation_url,
+        albumId: albumId,
+        artistId: artistId,
+        contractAddress: asset.asset_contract.address,
+        openseaPermalink: asset.permalink,
+      })
+    }
+  }
+
+  return musicAssets
 }
 
 export const extractOpenSeaAlbum = ({ collection }) => {

@@ -3,10 +3,13 @@ import Album from 'App/Models/Album'
 import Song from 'App/Models/Song'
 import OpenSeaAPIService from 'App/Services/OpenSeaAPIService'
 import { Store } from 'App/Validators/song'
+import { extractOpenSeaMusicAssets } from 'App/utils'
 
 export default class SongsController {
-  public async index({}: HttpContextContract) {
-    const songs = await Song.query()
+  public async index({ params }: HttpContextContract) {
+    const albumId: number = params.album_id
+
+    const songs = await Song.query().where('albumId', albumId)
 
     return {
       status: 200,
@@ -22,6 +25,8 @@ export default class SongsController {
 
     const album = await Album.findByOrFail('id', albumId)
 
+    let songPayload
+
     /**
      * @dev handle opensea assets, this performs recursion to get all pages of the assets
      */
@@ -35,6 +40,7 @@ export default class SongsController {
           assets.push(...data.assets)
         }
 
+        // prevent exceeding the max number of songs to add
         if (maxNumberToAdd && data.next && assets.length + 50 <= maxNumberToAdd) {
           await handleRecursiveCall({
             collection_slug: album.openseaIdentifier,
@@ -55,8 +61,12 @@ export default class SongsController {
         asset_contract_address: album.contractAddress,
       })
 
-      return { count: assets.length, data: assets }
+      songPayload = await extractOpenSeaMusicAssets(assets, albumId, album.artistId)
     }
+
+    const songs = await Song.updateOrCreateMany('tokenId', songPayload)
+
+    return { status: 200, data: songs }
   }
 
   // public async show({ params }: HttpContextContract) {}
