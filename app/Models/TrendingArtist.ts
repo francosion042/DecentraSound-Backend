@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import Album from './Album'
+import Artist from './Artist'
 
-export default class TrendingAlbum extends BaseModel {
+export default class TrendingArtist extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public albumId: number
+  public artistId: number
 
   @column()
   public platform: string
@@ -15,10 +15,10 @@ export default class TrendingAlbum extends BaseModel {
   @column()
   public position: number
 
-  @belongsTo(() => Album, {
-    foreignKey: 'albumId',
+  @belongsTo(() => Artist, {
+    foreignKey: 'artistId',
   })
-  public album: BelongsTo<typeof Album>
+  public artist: BelongsTo<typeof Artist>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

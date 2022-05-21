@@ -6,7 +6,7 @@ export class Store {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    albumId: schema.number(),
+    artistId: schema.number(),
     platform: schema.string.optional(),
     position: schema.number(),
   })
@@ -29,7 +29,7 @@ export class Update {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    albumId: schema.number.optional(),
+    artistId: schema.number.optional(),
     platform: schema.string.optional(),
     position: schema.number.optional(),
   })
