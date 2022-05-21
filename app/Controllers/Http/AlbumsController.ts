@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Album from 'App/Models/Album'
 import OpenSeaAPIService from 'App/Services/OpenSeaAPIService'
 import { Store } from 'App/Validators/album'
-import { extractOpenSeaAlbum } from 'App/utils'
+import { extractOpenSeaAlbum } from 'App/Utils'
 import { AlbumPayload } from 'App/Types'
 
 export default class AlbumsController {

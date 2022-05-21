@@ -8,7 +8,8 @@
     "start": "node server.js",
     "lint": "eslint --fix --ext=.ts .",
     "format": "prettier --write .",
-    "commit": "cz"
+    "commit": "cz",
+    "deploy-dev": "git push heroku-dev development:main"
   },
   "eslintConfig": {
     "extends": [

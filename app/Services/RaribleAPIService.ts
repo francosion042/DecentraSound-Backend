@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Env from '@ioc:Adonis/Core/Env'
-import { errorHandler } from 'App/utils'
+import { errorHandler } from 'App/Utils'
 import { GetAssetsByOwnerRequestBody } from 'App/Types/raribleServiceTypes'
 
 export default class RaribleAPIService {
