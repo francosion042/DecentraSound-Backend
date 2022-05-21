@@ -51,12 +51,12 @@ export const extractOpenSeaAlbum = ({ collection }) => {
   const album: AlbumPayload = {
     name: collection.name,
     description: collection.description,
-    contractAddress: collection.primary_asset_contracts[0].address,
-    contractType: collection.primary_asset_contracts[0].schema_name,
+    contractAddress: collection.primary_asset_contracts[0]?.address,
+    contractType: collection.primary_asset_contracts[0]?.schema_name,
     marketPlace: 'OpenSea',
     openseaIdentifier: collection.slug,
     coverImageUrl: collection.image_url,
-    releaseDate: DateTime.fromJSDate(new Date(collection.primary_asset_contracts[0].created_date)),
+    releaseDate: DateTime.fromJSDate(new Date(collection.created_date)),
   }
 
   return album
