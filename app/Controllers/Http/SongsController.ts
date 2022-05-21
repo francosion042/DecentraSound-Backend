@@ -66,7 +66,7 @@ export default class SongsController {
 
     const songs = await Song.updateOrCreateMany('tokenId', songPayload)
 
-    return { status: 200, data: songs }
+    return { status: 201, data: songs }
   }
 
   // public async show({ params }: HttpContextContract) {}

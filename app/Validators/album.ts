@@ -6,6 +6,7 @@ export class Store {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
+    artistId: schema.number(),
     marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
     openseaSlug: schema.string.optional({ trim: true }),
     contractAddress: schema.string.optional({ trim: true }),
@@ -32,6 +33,7 @@ export class Update {
 
   public schema = schema.create({
     name: schema.string.optional({ trim: true }),
+    artistId: schema.number.optional(),
     description: schema.string.optional(),
     contractAddress: schema.string.optional(),
     blockchain: schema.string.optional(),

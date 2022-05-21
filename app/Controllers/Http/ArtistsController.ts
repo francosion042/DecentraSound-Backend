@@ -17,10 +17,20 @@ export default class ArtistsController {
 
     const artist = await Artist.create(payload)
 
-    return { status: 200, data: artist }
+    return { status: 201, data: artist }
   }
 
-  // public async show({ params }: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const artistId: number = params.id
+
+    const artist = await Artist.query()
+      .where('id', artistId)
+      .preload('albums', (album) => {
+        album.preload('genre').preload('songs')
+      })
+
+    return { status: 200, data: artist }
+  }
 
   // public async update({ request, params }: HttpContextContract) {}
 

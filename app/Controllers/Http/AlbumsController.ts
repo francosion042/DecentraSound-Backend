@@ -25,11 +25,12 @@ export default class AlbumsController {
       })
 
       const albumPayload: AlbumPayload = await extractOpenSeaAlbum(data)
+      albumPayload.artistId = payload.artistId
 
       album = await Album.create(albumPayload)
     }
 
-    return { status: 200, data: album }
+    return { status: 201, data: album }
   }
 
   public async show({ params }: HttpContextContract) {
