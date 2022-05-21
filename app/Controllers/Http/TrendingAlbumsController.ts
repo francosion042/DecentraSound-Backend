@@ -9,9 +9,15 @@ export default class TrendingAlbumsController {
     let albums
 
     if (platform) {
-      albums = await TrendingAlbum.query().where('platform', platform)
-    } else {
       albums = await TrendingAlbum.query()
+        .where('platform', platform)
+        .preload('album', (album) => {
+          album.preload('artist').preload('genre').preload('songs')
+        })
+    } else {
+      albums = await TrendingAlbum.query().preload('album', (album) => {
+        album.preload('artist').preload('genre').preload('songs')
+      })
     }
 
     return {

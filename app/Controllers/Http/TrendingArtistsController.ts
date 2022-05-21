@@ -9,7 +9,11 @@ export default class TrendingArtistsController {
     let artists
 
     if (platform) {
-      artists = await TrendingArtist.query().where('platform', platform)
+      artists = await TrendingArtist.query()
+        .where('platform', platform)
+        .preload('artist', (artist) => {
+          artist.preload('albums').preload('songs')
+        })
     } else {
       artists = await TrendingArtist.query()
     }
