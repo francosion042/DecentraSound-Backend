@@ -6,7 +6,7 @@ export default class GenresController {
     const genres = await Genre.query()
 
     return {
-      status: 201,
+      status: 200,
       data: genres,
     }
   }

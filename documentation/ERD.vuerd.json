@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -66,
-    "scrollLeft": -65,
+    "scrollTop": -625,
+    "scrollLeft": 0,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -379,7 +379,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 222,
           "top": 228,
           "zIndex": 346,
@@ -674,7 +674,7 @@
           "active": false,
           "left": 111,
           "top": 485,
-          "zIndex": 340,
+          "zIndex": 362,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1158,6 +1158,114 @@
         },
         "visible": true,
         "id": "d37c0c37-d3bd-40c3-995f-720f0d673a7a"
+      },
+      {
+        "name": "TrandingAlbums",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1d64aec6-15dd-447b-9e5d-c02bb329d863"
+          },
+          {
+            "name": "albumId",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1cc659b5-8ce7-4dca-b336-4679696ce8b4"
+          },
+          {
+            "name": "platform",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "963d2a0c-025e-4186-a010-e582dcec1dfb"
+          },
+          {
+            "name": "priority",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "9d46923b-a1b3-47f3-8a34-068bf9c9a41f"
+          }
+        ],
+        "ui": {
+          "active": true,
+          "left": 85.5553,
+          "top": 1202.2219,
+          "zIndex": 372,
+          "widthName": 96.18017578125,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "b2625d29-7266-4f53-953a-5146c55c79f5"
       }
     ],
     "indexes": []
@@ -1384,7 +1492,7 @@
           "columnIds": [
             "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
           ],
-          "x": 309.337646484375,
+          "x": 210.1688232421875,
           "y": 800,
           "direction": "bottom"
         },
@@ -1400,6 +1508,32 @@
         "constraintName": "fk_album_to_song",
         "visible": true,
         "id": "7212e602-ad5d-4736-b6ba-a633f0f00c52"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "fa559925-bbb7-40d2-be04-13592172aa44",
+          "columnIds": [
+            "11cfa1e6-5597-4ed2-87d8-a49b52ebf5fc"
+          ],
+          "x": 408.5064697265625,
+          "y": 800,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "b2625d29-7266-4f53-953a-5146c55c79f5",
+          "columnIds": [
+            "1cc659b5-8ce7-4dca-b336-4679696ce8b4"
+          ],
+          "x": 259.0553,
+          "y": 1202.2219,
+          "direction": "top"
+        },
+        "constraintName": "fk_album_to_trandingalbums",
+        "visible": true,
+        "id": "2bb9189b-0624-4798-8dec-80abffe3ebb3"
       }
     ]
   }
