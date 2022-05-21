@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Genre from 'App/Models/Genre'
+import { Store } from 'App/Validators/genre'
 
 export default class GenresController {
   public async index({}: HttpContextContract) {
@@ -11,7 +12,13 @@ export default class GenresController {
     }
   }
 
-  // public async store({ request }: HttpContextContract) {}
+  public async store({ request }: HttpContextContract) {
+    const payload = await request.validate(Store)
+
+    const genre = await Genre.create(payload)
+
+    return { status: 201, data: genre }
+  }
 
   // public async show({ params }: HttpContextContract) {}
 

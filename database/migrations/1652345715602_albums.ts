@@ -33,6 +33,8 @@ export default class Albums extends BaseSchema {
 
       table.timestamp('releaseDate', { useTz: false })
 
+      table.index(['name', 'description', 'openseaIdentifier', 'raribleIdentifier'])
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

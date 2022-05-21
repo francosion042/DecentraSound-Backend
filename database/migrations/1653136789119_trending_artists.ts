@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class TrendingArtists extends BaseSchema {
-  protected tableName = 'trending_artists'
+  protected tableName = 'trendingArtists'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -16,8 +16,8 @@ export default class TrendingArtists extends BaseSchema {
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('createdAt', { useTz: true })
+      table.timestamp('updatedAt', { useTz: true })
     })
   }
 
