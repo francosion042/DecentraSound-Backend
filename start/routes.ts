@@ -20,6 +20,12 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+import './routes/user'
+import './routes/artist'
+import './routes/genre'
+import './routes/album'
+import './routes/song'
+
 Route.get('/', async () => {
   return { hello: 'world' }
 })
