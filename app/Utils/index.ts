@@ -35,7 +35,7 @@ export const extractOpenSeaMusicAssets = (assets, albumId, artistId) => {
         title: asset.name,
         tokenId: asset.token_id,
         imageUrl: asset.image_url,
-        audioUrl: asset.animation_url,
+        audioUrl: asset.animation_original_url,
         albumId: albumId,
         artistId: artistId,
         contractAddress: asset.asset_contract.address,

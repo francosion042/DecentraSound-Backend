@@ -15,7 +15,9 @@ export default class TrendingArtistsController {
           artist.preload('albums').preload('songs')
         })
     } else {
-      artists = await TrendingArtist.query()
+      artists = await TrendingArtist.query().preload('artist', (artist) => {
+        artist.preload('albums').preload('songs')
+      })
     }
 
     return {
