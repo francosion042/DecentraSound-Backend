@@ -12,13 +12,21 @@ export default class TrendingArtistsController {
       artists = await TrendingArtist.query()
         .where('platform', platform)
         .preload('artist', (artist) => {
-          artist.preload('albums').preload('songs')
+          artist
+            .preload('albums', (album) => {
+              album.preload('artist').preload('songs').preload('genre')
+            })
+            .preload('songs')
         })
         .orderBy('position', 'asc')
     } else {
       artists = await TrendingArtist.query()
         .preload('artist', (artist) => {
-          artist.preload('albums').preload('songs')
+          artist
+            .preload('albums', (album) => {
+              album.preload('artist').preload('songs').preload('genre')
+            })
+            .preload('songs')
         })
         .orderBy('position', 'asc')
     }
