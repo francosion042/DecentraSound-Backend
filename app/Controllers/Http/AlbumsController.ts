@@ -56,5 +56,7 @@ export default class AlbumsController {
     const albumId: number = params.id
 
     await (await Album.findByOrFail('id', albumId)).delete()
+
+    return { status: true }
   }
 }

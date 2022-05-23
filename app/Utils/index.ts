@@ -32,7 +32,7 @@ export const extractOpenSeaMusicAssets = (assets, albumId, artistId) => {
   for (const asset of assets) {
     if (
       (asset.animation_url && asset.animation_url.endsWith('mp3')) ||
-      asset.animation_url.endsWith('wav')
+      (asset.animation_url && asset.animation_url.endsWith('wav'))
     ) {
       musicAssets.push({
         title: asset.name,
