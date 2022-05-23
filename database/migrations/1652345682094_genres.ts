@@ -11,6 +11,8 @@ export default class Genres extends BaseSchema {
 
       table.text('description')
 
+      table.index(['title', 'description'])
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

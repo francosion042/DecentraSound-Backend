@@ -9,9 +9,13 @@ export default class Artists extends BaseSchema {
 
       table.string('name').notNullable()
 
+      table.text('imageUrl')
+
       table.text('description')
 
       table.integer('userId').unsigned().references('users.id').onDelete('SET NULL')
+
+      table.index(['name', 'description'])
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

@@ -16,9 +16,9 @@ export interface SongPayload {
 export interface AlbumPayload {
   name: string
   description?: string
-  contractAddress: string
+  contractAddress?: string
   blockchain?: string
-  contractType: string
+  contractType?: string
   totalSongs?: number
   artistId?: number
   genreId?: number

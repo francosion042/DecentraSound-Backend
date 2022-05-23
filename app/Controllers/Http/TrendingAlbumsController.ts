@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import TrendingAlbum from 'App/Models/TrendingAlbum'
-import { Store } from 'App/Validators/trendingAlbum'
+import { Store, Update } from 'App/Validators/trendingAlbum'
 
 export default class TrendingAlbumsController {
   public async index({ request }: HttpContextContract) {
@@ -9,9 +9,18 @@ export default class TrendingAlbumsController {
     let albums
 
     if (platform) {
-      albums = await TrendingAlbum.query().where('platform', platform)
+      albums = await TrendingAlbum.query()
+        .where('platform', platform)
+        .preload('album', (album) => {
+          album.preload('artist').preload('genre').preload('songs')
+        })
+        .orderBy('position', 'asc')
     } else {
       albums = await TrendingAlbum.query()
+        .preload('album', (album) => {
+          album.preload('artist').preload('genre').preload('songs')
+        })
+        .orderBy('position', 'asc')
     }
 
     return {
@@ -28,9 +37,21 @@ export default class TrendingAlbumsController {
     return { status: 201, data: trendingAlbum }
   }
 
-  // public async show({ params }: HttpContextContract) {}
+  // public async show({ params }: HttpContextContract) {
+  //   const trendingAlbumId: number = params.id
+  // }
 
-  // public async update({ request, params }: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const trendingAlbumId: number = params.id
+
+    const payload = await request.validate(Update)
+
+    const trendingAlbum = await (await TrendingAlbum.findByOrFail('id', trendingAlbumId))
+      .merge(payload)
+      .save()
+
+    return { status: 200, data: trendingAlbum }
+  }
 
   public async destroy({ params }: HttpContextContract) {
     const trendingAlbumId: number = params.id

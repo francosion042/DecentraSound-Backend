@@ -3,7 +3,7 @@ import Album from 'App/Models/Album'
 import Song from 'App/Models/Song'
 import OpenSeaAPIService from 'App/Services/OpenSeaAPIService'
 import { Store } from 'App/Validators/song'
-import { extractOpenSeaMusicAssets } from 'App/utils'
+import { extractOpenSeaMusicAssets } from 'App/Utils'
 
 export default class SongsController {
   public async index({ params }: HttpContextContract) {

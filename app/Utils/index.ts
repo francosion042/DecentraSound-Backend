@@ -30,7 +30,10 @@ export const extractOpenSeaMusicAssets = (assets, albumId, artistId) => {
   const musicAssets: SongPayload[] = []
 
   for (const asset of assets) {
-    if (asset.animation_url && asset.animation_url.endsWith('mp3')) {
+    if (
+      (asset.animation_url && asset.animation_url.endsWith('mp3')) ||
+      (asset.animation_url && asset.animation_url.endsWith('wav'))
+    ) {
       musicAssets.push({
         title: asset.name,
         tokenId: asset.token_id,
@@ -51,12 +54,12 @@ export const extractOpenSeaAlbum = ({ collection }) => {
   const album: AlbumPayload = {
     name: collection.name,
     description: collection.description,
-    contractAddress: collection.primary_asset_contracts[0].address,
-    contractType: collection.primary_asset_contracts[0].schema_name,
+    contractAddress: collection.primary_asset_contracts[0]?.address,
+    contractType: collection.primary_asset_contracts[0]?.schema_name,
     marketPlace: 'OpenSea',
     openseaIdentifier: collection.slug,
     coverImageUrl: collection.image_url,
-    releaseDate: DateTime.fromJSDate(new Date(collection.primary_asset_contracts[0].created_date)),
+    releaseDate: DateTime.fromJSDate(new Date(collection.created_date)),
   }
 
   return album

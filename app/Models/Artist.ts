@@ -12,6 +12,9 @@ export default class Artist extends BaseModel {
   public name: string
 
   @column()
+  public imageUrl: string
+
+  @column()
   public description: string
 
   @column()

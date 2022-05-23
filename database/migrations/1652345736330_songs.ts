@@ -27,6 +27,8 @@ export default class Songs extends BaseSchema {
 
       table.text('rariblePermalink')
 
+      table.index(['title'])
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

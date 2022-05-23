@@ -1,13 +1,13 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class TrendingAlbums extends BaseSchema {
-  protected tableName = 'trendingAlbums'
+export default class TrendingArtists extends BaseSchema {
+  protected tableName = 'trendingArtists'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.integer('albumId').unsigned().references('albums.id').onDelete('CASCADE').notNullable()
+      table.integer('artistId').unsigned().references('artists.id').onDelete('CASCADE')
 
       table.string('platform')
 

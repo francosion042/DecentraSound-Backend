@@ -2,8 +2,9 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Album from 'App/Models/Album'
 import OpenSeaAPIService from 'App/Services/OpenSeaAPIService'
 import { Store } from 'App/Validators/album'
-import { extractOpenSeaAlbum } from 'App/utils'
+import { extractOpenSeaAlbum } from 'App/Utils'
 import { AlbumPayload } from 'App/Types'
+import Artist from 'App/Models/Artist'
 
 export default class AlbumsController {
   public async index({}: HttpContextContract) {
@@ -30,6 +31,10 @@ export default class AlbumsController {
       album = await Album.create(albumPayload)
     }
 
+    const artist = await Artist.findByOrFail('id', payload.artistId)
+    artist.imageUrl = album.coverImageUrl
+    await artist.save()
+
     return { status: 201, data: album }
   }
 
@@ -51,5 +56,7 @@ export default class AlbumsController {
     const albumId: number = params.id
 
     await (await Album.findByOrFail('id', albumId)).delete()
+
+    return { status: true }
   }
 }

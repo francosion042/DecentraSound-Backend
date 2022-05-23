@@ -26,7 +26,7 @@ export default class ArtistsController {
     const artist = await Artist.query()
       .where('id', artistId)
       .preload('albums', (album) => {
-        album.preload('genre').preload('songs')
+        album.preload('genre').preload('songs').preload('artist')
       })
 
     return { status: 200, data: artist }
