@@ -8,7 +8,7 @@ export default class UserSavedSong extends BaseModel {
   public id: number
 
   @column()
-  public userid: number
+  public userId: number
 
   @column()
   public songId: number

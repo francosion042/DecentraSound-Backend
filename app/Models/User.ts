@@ -25,12 +25,12 @@ export default class User extends BaseModel {
   public artist: HasOne<typeof Artist>
 
   @hasMany(() => Song, {
-    foreignKey: 'userid',
+    foreignKey: 'userId',
   })
   public likedSongs: HasMany<typeof Song>
 
   @hasMany(() => Song, {
-    foreignKey: 'userid',
+    foreignKey: 'userId',
   })
   public savedSongs: HasMany<typeof Song>
 
