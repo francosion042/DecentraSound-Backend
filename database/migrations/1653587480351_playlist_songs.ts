@@ -7,7 +7,7 @@ export default class PlaylistSongs extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.integer('playlistId').unsigned().references('plalists.id').onDelete('CASCADE')
+      table.integer('playlistId').unsigned().references('playlists.id').onDelete('CASCADE')
 
       table.integer('songId').unsigned().references('songs.id').onDelete('CASCADE')
 
