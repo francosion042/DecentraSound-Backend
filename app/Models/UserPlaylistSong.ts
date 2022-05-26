@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import Playlist from './Playlist'
+import UserPlaylist from './UserPlaylist'
 import Song from './Song'
 
 export default class PlaylistSong extends BaseModel {
@@ -8,12 +8,15 @@ export default class PlaylistSong extends BaseModel {
   public id: number
 
   @column()
+  public playlistId: number
+
+  @column()
   public songId: number
 
-  @belongsTo(() => Playlist, {
-    foreignKey: 'songId',
+  @belongsTo(() => UserPlaylist, {
+    foreignKey: 'userPlaylistId',
   })
-  public playlist: BelongsTo<typeof Playlist>
+  public userPlaylist: BelongsTo<typeof UserPlaylist>
 
   @belongsTo(() => Song, {
     foreignKey: 'songId',

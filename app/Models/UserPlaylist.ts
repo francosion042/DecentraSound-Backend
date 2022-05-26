@@ -1,14 +1,17 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
-import Song from './Song'
+import UserPlaylistSong from './UserPlaylistSong'
 
-export default class Playlist extends BaseModel {
+export default class UserPlaylist extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
   public name: string
+
+  @column()
+  public description: string
 
   @column()
   public imageUrl: string
@@ -21,10 +24,10 @@ export default class Playlist extends BaseModel {
   })
   public user: BelongsTo<typeof User>
 
-  @hasMany(() => Song, {
-    foreignKey: 'playlistId',
+  @hasMany(() => UserPlaylistSong, {
+    foreignKey: 'userPlaylistId',
   })
-  public songs: HasMany<typeof Song>
+  public userPlaylistSongs: HasMany<typeof UserPlaylistSong>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

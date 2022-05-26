@@ -1,13 +1,13 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class PlaylistSongs extends BaseSchema {
-  protected tableName = 'playlistSongs'
+  protected tableName = 'userPlaylistSongs'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.integer('playlistId').unsigned().references('playlists.id').onDelete('CASCADE')
+      table.integer('userPlaylistId').unsigned().references('userPlaylists.id').onDelete('CASCADE')
 
       table.integer('songId').unsigned().references('songs.id').onDelete('CASCADE')
 

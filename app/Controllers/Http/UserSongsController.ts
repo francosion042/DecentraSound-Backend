@@ -20,6 +20,22 @@ export default class UserSongsController {
     return { status: 200, data: musicAssets }
   }
 
+  public async getUserLikedSongs({ params }: HttpContextContract) {
+    const userId = params.user_id
+
+    const songs = await UserLikedSong.query().where('userId', userId)
+
+    return { status: 200, data: songs }
+  }
+
+  public async getUserSavedSongs({ params }: HttpContextContract) {
+    const userId = params.user_id
+
+    const songs = await UserSavedSong.query().where('userId', userId)
+
+    return { status: 200, data: songs }
+  }
+
   public async likeSong({ params }: HttpContextContract) {
     const userId: number = params.user_id
     const songId = params.song_id
