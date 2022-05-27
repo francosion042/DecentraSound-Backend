@@ -4,7 +4,7 @@ Route.group(() => {
   Route.get('users/:user_id/songs/owned', 'UserSongsController.getUserOwnedSongs')
 }).prefix('api/v1')
 
-// User Liked SOngs
+// User Liked Songs
 Route.group(() => {
   Route.get('users/:user_id/songs/liked', 'UserSongsController.getUserLikedSongs')
 
@@ -22,6 +22,17 @@ Route.group(() => {
   Route.post('users/:user_id/songs/:song_id/unsave', 'UserSongsController.unsaveSong')
 }).prefix('api/v1')
 
+// Playlist
 Route.group(() => {
   Route.resource('users.playlists', 'UserPlaylistsController').apiOnly()
+
+  Route.post(
+    'playlists/:playlist_id/songs/:song_id/add',
+    'UserPlaylistsController.addSongToPlaylist'
+  )
+
+  Route.delete(
+    'playlists/:playlist_id/songs/:song_id/remove',
+    'UserPlaylistsController.removeSongFromPlaylist'
+  )
 }).prefix('api/v1')

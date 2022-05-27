@@ -23,7 +23,12 @@ export default class UserSongsController {
   public async getUserLikedSongs({ params }: HttpContextContract) {
     const userId = params.user_id
 
-    const songs = await UserLikedSong.query().where('userId', userId)
+    const songs = await UserLikedSong.query()
+      .where('userId', userId)
+      .preload('song', (song) => {
+        song.preload('album')
+        song.preload('artist')
+      })
 
     return { status: 200, data: songs }
   }
@@ -31,7 +36,12 @@ export default class UserSongsController {
   public async getUserSavedSongs({ params }: HttpContextContract) {
     const userId = params.user_id
 
-    const songs = await UserSavedSong.query().where('userId', userId)
+    const songs = await UserSavedSong.query()
+      .where('userId', userId)
+      .preload('song', (song) => {
+        song.preload('album')
+        song.preload('artist')
+      })
 
     return { status: 200, data: songs }
   }

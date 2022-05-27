@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import UserPlaylist from 'App/Models/UserPlaylist'
+import UserPlaylistSong from 'App/Models/UserPlaylistSong'
 import { Store, Update } from 'App/Validators/playlist'
 
 export default class UserPlaylistsController {
@@ -8,7 +9,12 @@ export default class UserPlaylistsController {
 
     const playlists = await UserPlaylist.query()
       .where('userId', userId)
-      .preload('userPlaylistSongs')
+      .preload('userPlaylistSongs', (playlistSong) => {
+        playlistSong.preload('song', (song) => {
+          song.preload('album')
+          song.preload('artist')
+        })
+      })
 
     return { status: 200, data: playlists }
   }
@@ -24,7 +30,45 @@ export default class UserPlaylistsController {
     return { status: 201, data: playlist }
   }
 
-  // public async show({ params }: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const playlistId: number = params.id
+
+    const playlist = await UserPlaylist.query()
+      .where('id', playlistId)
+      .preload('userPlaylistSongs', (playlistSong) => {
+        playlistSong.preload('song', (song) => {
+          song.preload('album')
+          song.preload('artist')
+        })
+      })
+    return { status: 200, data: playlist }
+  }
+
+  public async addSongToPlaylist({ params }: HttpContextContract) {
+    const playlistId: number = params.playlist_id
+    const songId: number = params.song_id
+
+    const playlistSong = await UserPlaylistSong.create({
+      userPlaylistId: playlistId,
+      songId: songId,
+    })
+
+    return { status: 200, data: playlistSong }
+  }
+
+  public async removeSongFromPlaylist({ params }: HttpContextContract) {
+    const playlistId: number = params.playlist_id
+    const songId: number = params.song_id
+
+    await (
+      await UserPlaylistSong.query()
+        .where('playlistId', playlistId)
+        .andWhere('songId', songId)
+        .firstOrFail()
+    ).delete()
+
+    return { status: 200 }
+  }
 
   public async update({ request, params }: HttpContextContract) {
     const playlistId: number = params.id
