@@ -33,6 +33,20 @@ export default class UserSongsController {
     return { status: 200, data: songs }
   }
 
+  public async verifySongLike({ params }: HttpContextContract) {
+    const userId: number = params.user_id
+    const songId = params.song_id
+
+    await User.findByOrFail('id', userId)
+
+    const likedSong = await UserLikedSong.query()
+      .where('userId', userId)
+      .andWhere('songId', songId)
+      .first()
+
+    return { status: 200, data: likedSong ? true : false }
+  }
+
   public async getUserSavedSongs({ params }: HttpContextContract) {
     const userId = params.user_id
 
@@ -46,6 +60,20 @@ export default class UserSongsController {
     return { status: 200, data: songs }
   }
 
+  public async verifySongSave({ params }: HttpContextContract) {
+    const userId: number = params.user_id
+    const songId = params.song_id
+
+    await User.findByOrFail('id', userId)
+
+    const savedSong = await UserSavedSong.query()
+      .where('userId', userId)
+      .andWhere('songId', songId)
+      .first()
+
+    return { status: 200, data: savedSong ? true : false }
+  }
+
   public async likeSong({ params }: HttpContextContract) {
     const userId: number = params.user_id
     const songId = params.song_id
@@ -54,7 +82,7 @@ export default class UserSongsController {
 
     const likedSong = await UserLikedSong.create({ userId, songId })
 
-    return { data: likedSong }
+    return { status: 200, data: likedSong }
   }
 
   public async unlikeSong({ params }: HttpContextContract) {
@@ -76,7 +104,7 @@ export default class UserSongsController {
 
     const likedSong = await UserSavedSong.create({ userId, songId })
 
-    return { data: likedSong }
+    return { status: 200, data: likedSong }
   }
 
   public async unsaveSong({ params }: HttpContextContract) {
