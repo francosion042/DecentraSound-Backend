@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasOne, HasOne, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Artist from './Artist'
+import Song from './Song'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -22,6 +23,16 @@ export default class User extends BaseModel {
     foreignKey: 'userId',
   })
   public artist: HasOne<typeof Artist>
+
+  @hasMany(() => Song, {
+    foreignKey: 'userId',
+  })
+  public likedSongs: HasMany<typeof Song>
+
+  @hasMany(() => Song, {
+    foreignKey: 'userId',
+  })
+  public savedSongs: HasMany<typeof Song>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

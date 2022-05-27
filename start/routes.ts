@@ -26,6 +26,7 @@ import './routes/genre'
 import './routes/album'
 import './routes/song'
 import './routes/trending'
+import './routes/library'
 
 Route.get('/', async () => {
   return { hello: 'world' }
