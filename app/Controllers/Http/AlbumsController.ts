@@ -28,7 +28,7 @@ export default class AlbumsController {
       const albumPayload: AlbumPayload = await extractOpenSeaAlbum(data)
       albumPayload.artistId = payload.artistId
 
-      album = await Album.create(albumPayload)
+      album = await Album.updateOrCreate({ openseaIdentifier: payload.openseaSlug }, albumPayload)
     }
 
     const artist = await Artist.findByOrFail('id', payload.artistId)

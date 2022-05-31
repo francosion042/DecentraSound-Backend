@@ -4,7 +4,10 @@ import { Store, Update } from 'App/Validators/genre'
 
 export default class GenresController {
   public async index({}: HttpContextContract) {
-    const genres = await Genre.query()
+    const genres = await Genre.query().preload('albums', (album) => {
+      album.preload('artist')
+      album.preload('songs')
+    })
 
     return {
       status: 200,
