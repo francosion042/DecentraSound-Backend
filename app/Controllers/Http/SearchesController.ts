@@ -37,15 +37,15 @@ export default class SearchesController {
 
     for (let i = 0; i < 5; i++) {
       if (albums[i]) {
-        data.push({ resultType: 'album', albums })
+        data.push({ resultType: 'album', album: albums[i] })
       }
 
       if (songs[i]) {
-        data.push({ resultType: 'song', songs })
+        data.push({ resultType: 'song', song: songs[i] })
       }
 
       if (artists[i]) {
-        data.push({ resultType: 'artist', artists })
+        data.push({ resultType: 'artist', artist: artists[i] })
       }
     }
 
