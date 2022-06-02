@@ -6,6 +6,7 @@ import Song from 'App/Models/Song'
 export default class SearchesController {
   public async index({ request }: HttpContextContract) {
     let { term } = request.all()
+    let dataId = 1
     let data: object[] = []
 
     term = term.split(' ').join(',')
@@ -40,16 +41,17 @@ export default class SearchesController {
 
     for (let i = 0; i < 5; i++) {
       if (albums[i]) {
-        data.push({ resultType: 'album', album: albums[i] })
+        data.push({ resultType: 'album', dataId, album: albums[i] })
       }
 
       if (songs[i]) {
-        data.push({ resultType: 'song', song: songs[i] })
+        data.push({ resultType: 'song', dataId, song: songs[i] })
       }
 
       if (artists[i]) {
-        data.push({ resultType: 'artist', artist: artists[i] })
+        data.push({ resultType: 'artist', dataId, artist: artists[i] })
       }
+      dataId += 1
     }
 
     return {
