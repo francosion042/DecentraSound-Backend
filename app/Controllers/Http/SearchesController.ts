@@ -21,7 +21,7 @@ export default class SearchesController {
     const albums = await Album.query()
       .whereRaw(albumSQL, searchTerm?.toLowerCase())
       .preload('artist')
-      // .preload('songs')
+      .preload('songs')
       .limit(5)
 
     const songs = await Song.query()
@@ -33,6 +33,7 @@ export default class SearchesController {
     const artists = await Artist.query()
       .whereRaw(artistSQL, searchTerm?.toLowerCase())
       .preload('albums')
+      .preload('songs')
       .limit(5)
 
     for (let i = 0; i < 5; i++) {
