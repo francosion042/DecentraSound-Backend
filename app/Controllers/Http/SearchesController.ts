@@ -42,16 +42,18 @@ export default class SearchesController {
     for (let i = 0; i < 5; i++) {
       if (albums[i]) {
         data.push({ resultType: 'album', dataId, album: albums[i] })
+        dataId += 1
       }
 
       if (songs[i]) {
         data.push({ resultType: 'song', dataId, song: songs[i] })
+        dataId += 1
       }
 
       if (artists[i]) {
         data.push({ resultType: 'artist', dataId, artist: artists[i] })
+        dataId += 1
       }
-      dataId += 1
     }
 
     return {
