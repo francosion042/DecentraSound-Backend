@@ -32,7 +32,9 @@ export default class SearchesController {
 
     const artists = await Artist.query()
       .whereRaw(artistSQL, searchTerm?.toLowerCase())
-      .preload('albums')
+      .preload('albums', (album) => {
+        album.preload('artist').preload('songs').preload('genre')
+      })
       .preload('songs')
       .limit(5)
 
