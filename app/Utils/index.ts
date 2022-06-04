@@ -2,15 +2,19 @@ import { SongPayload, AlbumPayload } from 'App/Types'
 import CustomException from 'App/Exceptions/CustomException'
 import { DateTime } from 'luxon'
 
-export const extractRaribleMusicAssets = (data) => {
+export const extractRaribleMusicAssets = (
+  items,
+  albumId: number | undefined = undefined,
+  artistId: number | undefined = undefined
+) => {
   const musicAssets: SongPayload[] = []
 
-  for (const item of data?.items) {
+  for (const item of items) {
     let itemImageUrl = ''
     for (const itemContent of item.meta.content) {
-      if (itemContent['@type'] === 'IMAGE' && itemContent['mimeType'] === 'image/gif') {
+      if (itemContent['@type'] === 'IMAGE' && itemContent.mimeType?.startsWith('image')) {
         itemImageUrl = itemContent.url
-      } else if (itemContent['@type'] === 'VIDEO' && itemContent['mimeType'] === 'audio/wav') {
+      } else if (itemContent['@type'] === 'VIDEO' && itemContent.mimeType?.startsWith('audio')) {
         musicAssets.push({
           title: item.meta.name,
           tokenId: item.tokenId,
@@ -18,12 +22,31 @@ export const extractRaribleMusicAssets = (data) => {
           imageUrl: itemImageUrl,
           audioUrl: itemContent.url,
           contractAddress: item.contract.split(':')[1],
+          albumId: albumId,
+          artistId: artistId,
         })
       }
     }
   }
 
   return musicAssets
+}
+
+export const extractRaribleAlbum = (collection) => {
+  const album: AlbumPayload = {
+    name: collection.name,
+    blockchain: collection.blockchain,
+    description: collection.meta.description,
+    contractAddress: collection.id.split(':')[1],
+    contractType: collection.type,
+    marketPlace: 'Rarible',
+    coverImageUrl: collection.meta.content[0]?.mimeType?.startsWith('image')
+      ? collection.meta.content[0]?.url
+      : null,
+    releaseDate: DateTime.fromJSDate(new Date()),
+  }
+
+  return album
 }
 
 export const extractOpenSeaMusicAssets = (assets, albumId, artistId) => {

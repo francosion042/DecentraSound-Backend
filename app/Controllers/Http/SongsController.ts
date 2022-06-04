@@ -3,7 +3,8 @@ import Album from 'App/Models/Album'
 import Song from 'App/Models/Song'
 import OpenSeaAPIService from 'App/Services/OpenSeaAPIService'
 import { Store } from 'App/Validators/song'
-import { extractOpenSeaMusicAssets } from 'App/Utils'
+import { extractOpenSeaMusicAssets, extractRaribleMusicAssets } from 'App/Utils'
+import RaribleAPIService from 'App/Services/RaribleAPIService'
 
 export default class SongsController {
   public async index({ params }: HttpContextContract) {
@@ -62,6 +63,41 @@ export default class SongsController {
       })
 
       songPayload = await extractOpenSeaMusicAssets(assets, albumId, album.artistId)
+    } else if (album.marketPlace === 'Rarible') {
+      /**
+       * @dev handle rarible assets, this performs recursion to get all pages of the assets
+       */
+      const assets: object[] = []
+
+      const handleRecursiveCall = async (params) => {
+        const data = await RaribleAPIService.getAssetsByCollection(params)
+
+        if (data.items) {
+          assets.push(...data.items)
+        }
+
+        // prevent exceeding the max number of songs to add
+        if (maxNumberToAdd && data.continuation && assets.length + 50 <= maxNumberToAdd) {
+          await handleRecursiveCall({
+            blockchain: album.blockchain,
+            address: album.contractAddress,
+            continuation: data.continuation,
+          })
+        } else if (maxNumberToAdd === undefined && data.continuation) {
+          await handleRecursiveCall({
+            blockchain: album.blockchain,
+            address: album.contractAddress,
+            continuation: data.continuation,
+          })
+        }
+      }
+
+      await handleRecursiveCall({
+        blockchain: album.blockchain,
+        address: album.contractAddress,
+      })
+
+      songPayload = await extractRaribleMusicAssets(assets, albumId, album.artistId)
     }
 
     const songs = await Song.updateOrCreateMany('tokenId', songPayload)

@@ -3,12 +3,12 @@ import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import UserPlaylist from './UserPlaylist'
 import Song from './Song'
 
-export default class PlaylistSong extends BaseModel {
+export default class UserPlaylistSong extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public playlistId: number
+  public userPlaylistId: number
 
   @column()
   public songId: number

@@ -7,9 +7,6 @@ export class Store {
 
   public schema = schema.create({
     marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
-    openseaSlug: schema.string.optional({ trim: true }),
-    contractAddress: schema.string.optional({ trim: true }),
-    rarible: schema.string.optional({ trim: true }),
   })
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`
