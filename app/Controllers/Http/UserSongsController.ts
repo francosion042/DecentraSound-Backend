@@ -11,9 +11,15 @@ export default class UserSongsController {
 
     const user = await User.findByOrFail('id', userId)
 
-    const assets = await RaribleAPIService.getAssetsByOwner({
+    const data = await RaribleAPIService.getAssetsByOwner({
       address: user.address,
     })
+
+    const assets: object[] = []
+
+    if (data.items) {
+      assets.push(...data.items)
+    }
 
     const musicAssets = await extractRaribleMusicAssets(assets)
 

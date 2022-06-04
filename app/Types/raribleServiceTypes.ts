@@ -5,10 +5,9 @@ export interface GetAssetsByOwnerRequestBody {
 }
 
 export interface GetAssetsByCollectionRequestBody {
-  blockchains?: string
+  blockchain: string
   address: string
   continuation?: string
-  size?: number
 }
 
 export interface GetCollectionByIdRequestBody {

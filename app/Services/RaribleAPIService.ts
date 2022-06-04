@@ -10,9 +10,7 @@ import {
 export default class RaribleAPIService {
   public static async getAssetsByOwner(data: GetAssetsByOwnerRequestBody) {
     const params = {
-      blockchains: data.blockchains,
       owner: `ETHEREUM:${data.address}`,
-      size: data.size,
     }
     try {
       const response = await axios.get(`${Env.get('RARIBLE_API_BASE_URL')}/items/byOwner`, {
@@ -29,8 +27,7 @@ export default class RaribleAPIService {
 
   public static async getAssetsByCollection(data: GetAssetsByCollectionRequestBody) {
     const params = {
-      blockchains: data.blockchains,
-      collection: `ETHEREUM:${data.address}`,
+      collection: `${data.blockchain}:${data.address}`,
       ...(data.continuation && { cursor: data.continuation }),
       size: 50,
     }
