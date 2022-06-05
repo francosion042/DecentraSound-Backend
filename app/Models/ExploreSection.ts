@@ -9,6 +9,9 @@ export default class ExploreSection extends BaseModel {
   public title: string
 
   @column()
+  public sectionCard: string
+
+  @column()
   public isVisible: boolean
 
   @column.dateTime({ autoCreate: true })

@@ -9,6 +9,8 @@ export default class ExploreSections extends BaseSchema {
 
       table.string('title').notNullable()
 
+      table.string('sectionCard')
+
       table.boolean('isVisible').defaultTo(true)
 
       /**
