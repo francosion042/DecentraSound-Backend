@@ -44,6 +44,9 @@ export default class Album extends BaseModel {
   @column()
   public coverImageUrl: string
 
+  @column()
+  public isSpecial: boolean
+
   @belongsTo(() => Artist, {
     foreignKey: 'artistId',
   })

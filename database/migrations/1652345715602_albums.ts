@@ -31,6 +31,8 @@ export default class Albums extends BaseSchema {
 
       table.integer('totalSongs')
 
+      table.boolean('isSpecial').defaultTo(false)
+
       table.timestamp('releaseDate', { useTz: false })
 
       table.index(['name', 'description', 'openseaIdentifier', 'raribleIdentifier'])

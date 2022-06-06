@@ -68,6 +68,6 @@ export default class AlbumsController {
 
     await (await Album.findByOrFail('id', albumId)).delete()
 
-    return { status: true }
+    return { status: 200 }
   }
 }
