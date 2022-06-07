@@ -36,6 +36,9 @@ export default class Album extends BaseModel {
   public marketPlace: string
 
   @column()
+  public marketPlaceAlbumUrl: string
+
+  @column()
   public openseaIdentifier: string //slug
 
   @column()

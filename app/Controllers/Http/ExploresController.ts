@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Album from 'App/Models/Album'
+import Genre from 'App/Models/Genre'
 
 export default class ExploresController {
   public async getSpecialAlbums({}: HttpContextContract) {
@@ -15,19 +16,14 @@ export default class ExploresController {
     }
   }
 
-  public async getSpecialAlbumsByGenre({ params }: HttpContextContract) {
-    const genreId: number = params.genre_id
-
-    const albums = await Album.query()
-      .where('isSpecial', true)
-      .andWhere('genreId', genreId)
-      .preload('artist')
-      .preload('genre')
-      .preload('songs')
+  public async getSpecialAlbumsByGenre({}: HttpContextContract) {
+    const genreAlbums = await Genre.query().preload('albums', (album) => {
+      album.where('isSpecial', true).preload('artist').preload('genre').preload('songs')
+    })
 
     return {
       status: 200,
-      data: albums,
+      data: genreAlbums,
     }
   }
 
@@ -37,6 +33,26 @@ export default class ExploresController {
       .preload('genre')
       .preload('songs')
       .orderBy('releaseDate', 'desc')
+
+    return {
+      status: 200,
+      data: albums,
+    }
+  }
+
+  public async getAlbumsByBlockchain({ request, response }: HttpContextContract) {
+    let { blockchain } = request.all()
+
+    if (!blockchain) {
+      response.status(400)
+      return { status: 400 }
+    }
+
+    const albums = await Album.query()
+      .where('blockchain', blockchain)
+      .preload('artist')
+      .preload('genre')
+      .preload('songs')
 
     return {
       status: 200,

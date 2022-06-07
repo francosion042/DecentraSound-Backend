@@ -28,6 +28,7 @@ import './routes/song'
 import './routes/trending'
 import './routes/library'
 import './routes/search'
+import './routes/explore'
 
 Route.get('/', async () => {
   return { hello: 'world' }

@@ -23,6 +23,8 @@ export default class Albums extends BaseSchema {
 
       table.string('marketPlace')
 
+      table.text('marketPlaceAlbumUrl')
+
       table.text('openseaIdentifier') //slug
 
       table.text('raribleIdentifier')
