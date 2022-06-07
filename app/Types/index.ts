@@ -27,4 +27,5 @@ export interface AlbumPayload {
   raribleIdentifier?: string
   coverImageUrl?: string
   releaseDate: DateTime
+  isSpecial?: boolean
 }

@@ -28,6 +28,8 @@ export default class AlbumsController {
 
       const albumPayload: AlbumPayload = await extractOpenSeaAlbum(data)
       albumPayload.artistId = payload.artistId
+      albumPayload.genreId = payload.genreId
+      albumPayload.isSpecial = payload.isSpecial
 
       album = await Album.updateOrCreate({ openseaIdentifier: payload.openseaSlug }, albumPayload)
     } else if (payload.marketPlace === 'Rarible' && payload.contractAddress && payload.blockchain) {
@@ -38,6 +40,8 @@ export default class AlbumsController {
 
       const albumPayload: AlbumPayload = await extractRaribleAlbum(data)
       albumPayload.artistId = payload.artistId
+      albumPayload.genreId = payload.genreId
+      albumPayload.isSpecial = payload.isSpecial
 
       album = await Album.updateOrCreate({ contractAddress: payload.contractAddress }, albumPayload)
     }

@@ -7,5 +7,5 @@ Route.group(() => {
 
   Route.get('albums/latest', 'ExploresController.getLatestAlbums')
 
-  Route.get('albums/byBockchain', 'ExploresController.getAlbumsByBlockchain')
+  Route.get('albums/byBlockchain', 'ExploresController.getAlbumsByBlockchain')
 }).prefix('api/v1/explore')
