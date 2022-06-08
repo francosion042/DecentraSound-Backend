@@ -7,7 +7,7 @@ import UserSavedSong from 'App/Models/UserSavedSong'
 
 export default class UserSongsController {
   public async getUserOwnedSongs({ params }: HttpContextContract) {
-    const userId = params.user_id
+    const userId: number = params.user_id
 
     const user = await User.findByOrFail('id', userId)
 
@@ -27,7 +27,7 @@ export default class UserSongsController {
   }
 
   public async getUserLikedSongs({ params }: HttpContextContract) {
-    const userId = params.user_id
+    const userId: number = params.user_id
 
     const songs = await UserLikedSong.query()
       .where('userId', userId)
@@ -41,7 +41,7 @@ export default class UserSongsController {
 
   public async verifySongLike({ params }: HttpContextContract) {
     const userId: number = params.user_id
-    const songId = params.song_id
+    const songId: number = params.song_id
 
     await User.findByOrFail('id', userId)
 
@@ -54,7 +54,7 @@ export default class UserSongsController {
   }
 
   public async getUserSavedSongs({ params }: HttpContextContract) {
-    const userId = params.user_id
+    const userId: number = params.user_id
 
     const songs = await UserSavedSong.query()
       .where('userId', userId)
@@ -68,7 +68,7 @@ export default class UserSongsController {
 
   public async verifySongSave({ params }: HttpContextContract) {
     const userId: number = params.user_id
-    const songId = params.song_id
+    const songId: number = params.song_id
 
     await User.findByOrFail('id', userId)
 
@@ -82,7 +82,7 @@ export default class UserSongsController {
 
   public async likeSong({ params }: HttpContextContract) {
     const userId: number = params.user_id
-    const songId = params.song_id
+    const songId: number = params.song_id
 
     await User.findByOrFail('id', userId)
 
@@ -104,13 +104,13 @@ export default class UserSongsController {
 
   public async saveSong({ params }: HttpContextContract) {
     const userId: number = params.user_id
-    const songId = params.song_id
+    const songId: number = params.song_id
 
     await User.findByOrFail('id', userId)
 
-    const likedSong = await UserSavedSong.create({ userId, songId })
+    const savedSong = await UserSavedSong.create({ userId, songId })
 
-    return { status: 200, data: likedSong }
+    return { status: 200, data: savedSong }
   }
 
   public async unsaveSong({ params }: HttpContextContract) {
