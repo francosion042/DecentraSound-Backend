@@ -7,11 +7,14 @@ export class Store {
 
   public schema = schema.create({
     artistId: schema.number(),
+    genreId: schema.number.optional(),
     marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
     openseaSlug: schema.string.optional({ trim: true }),
     contractAddress: schema.string.optional({ trim: true }),
     blockchain: schema.string.optional(),
     rarible: schema.string.optional({ trim: true }),
+    marketPlaceAlbumUrl: schema.string.optional(),
+    isSpecial: schema.boolean.optional(),
   })
 
   /**
@@ -34,13 +37,16 @@ export class Update {
   public schema = schema.create({
     name: schema.string.optional({ trim: true }),
     artistId: schema.number.optional(),
+    genreId: schema.number.optional(),
     description: schema.string.optional(),
     contractAddress: schema.string.optional(),
     blockchain: schema.string.optional(),
+    marketPlaceAlbumUrl: schema.string.optional(),
     openseaPermalink: schema.string.optional(),
     rariblePermalink: schema.string.optional(),
     coverImageUrl: schema.string.optional(),
     totalSongs: schema.number.optional(),
+    isSpecial: schema.boolean.optional(),
   })
 
   /**

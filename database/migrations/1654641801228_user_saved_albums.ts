@@ -1,17 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class ExploreSections extends BaseSchema {
-  protected tableName = 'exploreSections'
+export default class UserSavedAlbums extends BaseSchema {
+  protected tableName = 'userSavedAlbums'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.string('title').notNullable()
+      table.integer('userId').unsigned().references('users.id').onDelete('CASCADE').notNullable()
 
-      table.string('sectionCard')
-
-      table.boolean('isVisible').defaultTo(true)
+      table.integer('albumId').unsigned().references('albums.id').onDelete('CASCADE').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

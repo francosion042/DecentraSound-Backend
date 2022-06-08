@@ -7,7 +7,12 @@ export default class TrendingArtists extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.integer('artistId').unsigned().references('artists.id').onDelete('CASCADE')
+      table
+        .integer('artistId')
+        .unsigned()
+        .references('artists.id')
+        .onDelete('CASCADE')
+        .notNullable()
 
       table.string('platform')
 

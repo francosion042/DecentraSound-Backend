@@ -23,6 +23,8 @@ export default class Albums extends BaseSchema {
 
       table.string('marketPlace')
 
+      table.text('marketPlaceAlbumUrl')
+
       table.text('openseaIdentifier') //slug
 
       table.text('raribleIdentifier')
@@ -30,6 +32,8 @@ export default class Albums extends BaseSchema {
       table.text('coverImageUrl')
 
       table.integer('totalSongs')
+
+      table.boolean('isSpecial').defaultTo(false)
 
       table.timestamp('releaseDate', { useTz: false })
 

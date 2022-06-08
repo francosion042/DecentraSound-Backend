@@ -7,9 +7,9 @@ export default class UserSavedSongs extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.integer('userId').unsigned().references('users.id').onDelete('CASCADE')
+      table.integer('userId').unsigned().references('users.id').onDelete('CASCADE').notNullable()
 
-      table.integer('songId').unsigned().references('songs.id').onDelete('CASCADE')
+      table.integer('songId').unsigned().references('songs.id').onDelete('CASCADE').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

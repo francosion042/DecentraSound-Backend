@@ -36,6 +36,9 @@ export default class Album extends BaseModel {
   public marketPlace: string
 
   @column()
+  public marketPlaceAlbumUrl: string
+
+  @column()
   public openseaIdentifier: string //slug
 
   @column()
@@ -43,6 +46,9 @@ export default class Album extends BaseModel {
 
   @column()
   public coverImageUrl: string
+
+  @column()
+  public isSpecial: boolean
 
   @belongsTo(() => Artist, {
     foreignKey: 'artistId',
