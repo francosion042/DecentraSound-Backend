@@ -11,7 +11,7 @@ export default class UserSavedArtistsController {
       .preload('artist', (artist) => {
         artist
           .preload('albums', (album) => {
-            album.preload('genre').preload('songs')
+            album.preload('genre').preload('songs').preload('artist')
           })
           .preload('songs')
       })
