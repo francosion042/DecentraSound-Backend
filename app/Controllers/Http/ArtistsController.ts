@@ -5,6 +5,10 @@ import { Store } from 'App/Validators/artist'
 export default class ArtistsController {
   public async index({}: HttpContextContract) {
     const artists = await Artist.query()
+      .preload('albums', (album) => {
+        album.preload('genre').preload('songs').preload('artist')
+      })
+      .preload('songs')
 
     return {
       status: 200,
@@ -28,6 +32,7 @@ export default class ArtistsController {
       .preload('albums', (album) => {
         album.preload('genre').preload('songs').preload('artist')
       })
+      .preload('songs')
 
     return { status: 200, data: artist }
   }
