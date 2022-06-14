@@ -14,9 +14,16 @@ export default class TrendingArtistsController {
         .preload('artist', (artist) => {
           artist
             .preload('albums', (album) => {
-              album.preload('artist').preload('songs').preload('genre')
+              album
+                .preload('artist')
+                .preload('songs', (song) => {
+                  song.preload('artist').preload('album')
+                })
+                .preload('genre')
             })
-            .preload('songs')
+            .preload('songs', (song) => {
+              song.preload('artist').preload('album')
+            })
         })
         .orderBy('position', 'asc')
     } else {
