@@ -60,7 +60,10 @@ export default class AlbumsController {
       .where('id', albumId)
       .preload('artist')
       .preload('genre')
-      .preload('songs')
+      .preload('songs', (song) => {
+        song.preload('artist')
+        song.preload('album')
+      })
 
     return { status: 200, data: album }
   }
