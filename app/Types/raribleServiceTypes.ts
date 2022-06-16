@@ -11,8 +11,7 @@ export interface GetAssetsByCollectionRequestBody {
 }
 
 export interface GetAssetsByTokenIdsRequestBody {
-  address: string
-  tokenIds: object[]
+  tokenIds: { tokenBlockchain?: string; tokenContractAddress?: string; tokenId: string }[]
 }
 
 export interface GetCollectionByIdRequestBody {

@@ -99,7 +99,6 @@ export default class SongsController {
         })
       } else {
         const data = await RaribleAPIService.getAssetsByTokenIds({
-          address: album.contractAddress,
           tokenIds: requestBody.tokenIds,
         })
 

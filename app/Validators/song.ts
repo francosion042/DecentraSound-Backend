@@ -10,6 +10,7 @@ export class Store {
     tokenIds: schema.array.optional().members(
       schema.object().members({
         tokenBlockchain: schema.string.optional(),
+        tokenContractAddress: schema.string.optional(),
         tokenId: schema.string(),
       })
     ),

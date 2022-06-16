@@ -47,7 +47,7 @@ export default class RaribleAPIService {
 
   public static async getAssetsByTokenIds(data: GetAssetsByTokenIdsRequestBody) {
     const tokenIds: string[] = data.tokenIds.map(
-      (token) => `${token['tokenBlockchain']}:${data.address}:${token['tokenId']}`
+      (token) => `${token.tokenBlockchain}:${token.tokenContractAddress}:${token.tokenId}`
     )
     try {
       const response = await axios.post(`${Env.get('RARIBLE_API_BASE_URL')}/items/byIds`, {
