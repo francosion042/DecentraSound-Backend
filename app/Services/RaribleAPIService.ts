@@ -5,6 +5,7 @@ import {
   GetAssetsByCollectionRequestBody,
   GetAssetsByOwnerRequestBody,
   GetCollectionByIdRequestBody,
+  GetAssetsByTokenIdsRequestBody,
 } from 'App/Types/raribleServiceTypes'
 
 export default class RaribleAPIService {
@@ -34,6 +35,23 @@ export default class RaribleAPIService {
     try {
       const response = await axios.get(`${Env.get('RARIBLE_API_BASE_URL')}/items/byCollection`, {
         params,
+      })
+
+      if (response.status === 200 && response.data) {
+        return response.data
+      }
+    } catch (error) {
+      errorHandler(error)
+    }
+  }
+
+  public static async getAssetsByTokenIds(data: GetAssetsByTokenIdsRequestBody) {
+    const tokenIds: string[] = data.tokenIds.map(
+      (token) => `${token['tokenBlockchain']}:${data.address}:${token['tokenId']}`
+    )
+    try {
+      const response = await axios.post(`${Env.get('RARIBLE_API_BASE_URL')}/items/byIds`, {
+        ids: tokenIds,
       })
 
       if (response.status === 200 && response.data) {

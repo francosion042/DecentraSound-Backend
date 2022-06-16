@@ -1,4 +1,5 @@
 export interface GetAssetsByCollectionRequestBody {
+  tokenIds?: object[]
   collection_slug?: string
   asset_contract_address?: string
   cursor?: string
