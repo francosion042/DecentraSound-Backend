@@ -4,6 +4,7 @@ import { errorHandler } from 'App/Utils'
 import {
   GetAssetsByCollectionRequestBody,
   GetACollectionRequestBody,
+  GetAssetsByTokenIdsRequestBody,
 } from 'App/Types/openSeaServiceTypes'
 
 export default class OpenSeaAPIService {
@@ -29,17 +30,14 @@ export default class OpenSeaAPIService {
     }
   }
 
-  public static async getAssetsByTokenIds(data: GetAssetsByCollectionRequestBody) {
-    const params = {
-      ...(data.collection_slug && { collection_slug: data.collection_slug }),
-      ...(data.asset_contract_address && { asset_contract_address: data.asset_contract_address }),
-      ...(data.cursor && { cursor: data.cursor }),
-      limit: 50,
-      include_orders: false,
+  public static async getAssetsByTokenIds(data: GetAssetsByTokenIdsRequestBody) {
+    const params = new URLSearchParams()
+    params.append('include_orders', 'false')
+
+    for (const tokenId of data.tokenIds!) {
+      params.append('token_ids', tokenId.tokenId)
     }
-    // for (const tokenId of data.tokenIds!) {
-    //   params['token_ids']
-    // }
+
     try {
       const response = await axios.get(`${Env.get('OPENSEA_API_BASE_URL')}/assets`, {
         params,
