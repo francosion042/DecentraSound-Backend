@@ -6,7 +6,13 @@ export class Store {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    marketPlace: schema.enum.optional(['OpenSea', 'Rarible']),
+    tokenIds: schema.array.optional().members(
+      schema.object().members({
+        tokenBlockchain: schema.string.optional(),
+        tokenContractAddress: schema.string.optional(),
+        tokenId: schema.string(),
+      })
+    ),
   })
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

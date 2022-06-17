@@ -22,7 +22,7 @@ export default class SongsController {
     const albumId: number = params.album_id
     const { maxNumberToAdd } = request.all()
 
-    await request.validate(Store)
+    const requestBody = await request.validate(Store)
 
     const album = await Album.findByOrFail('id', albumId)
 
@@ -34,33 +34,43 @@ export default class SongsController {
     if (album.marketPlace === 'OpenSea') {
       const assets: object[] = []
 
-      const handleRecursiveCall = async (params) => {
-        const data = await OpenSeaAPIService.getAssetsByCollection(params)
+      if (!requestBody.tokenIds) {
+        const handleRecursiveCall = async (params) => {
+          const data = await OpenSeaAPIService.getAssetsByCollection(params)
+
+          if (data.assets) {
+            assets.push(...data.assets)
+          }
+
+          // prevent exceeding the max number of songs to add
+          if (maxNumberToAdd && data.next && assets.length + 50 <= maxNumberToAdd) {
+            await handleRecursiveCall({
+              collection_slug: album.openseaIdentifier,
+              asset_contract_address: album.contractAddress,
+              cursor: data.next,
+            })
+          } else if (maxNumberToAdd === undefined && data.next) {
+            await handleRecursiveCall({
+              collection_slug: album.openseaIdentifier,
+              asset_contract_address: album.contractAddress,
+              cursor: data.next,
+            })
+          }
+        }
+
+        await handleRecursiveCall({
+          collection_slug: album.openseaIdentifier,
+          asset_contract_address: album.contractAddress,
+        })
+      } else {
+        const data = await OpenSeaAPIService.getAssetsByTokenIds({
+          tokenIds: requestBody.tokenIds,
+        })
 
         if (data.assets) {
           assets.push(...data.assets)
         }
-
-        // prevent exceeding the max number of songs to add
-        if (maxNumberToAdd && data.next && assets.length + 50 <= maxNumberToAdd) {
-          await handleRecursiveCall({
-            collection_slug: album.openseaIdentifier,
-            asset_contract_address: album.contractAddress,
-            cursor: data.next,
-          })
-        } else if (maxNumberToAdd === undefined && data.next) {
-          await handleRecursiveCall({
-            collection_slug: album.openseaIdentifier,
-            asset_contract_address: album.contractAddress,
-            cursor: data.next,
-          })
-        }
       }
-
-      await handleRecursiveCall({
-        collection_slug: album.openseaIdentifier,
-        asset_contract_address: album.contractAddress,
-      })
 
       songPayload = await extractOpenSeaMusicAssets(assets, albumId, album.artistId)
     } else if (album.marketPlace === 'Rarible') {
@@ -69,33 +79,43 @@ export default class SongsController {
        */
       const assets: object[] = []
 
-      const handleRecursiveCall = async (params) => {
-        const data = await RaribleAPIService.getAssetsByCollection(params)
+      if (!requestBody.tokenIds) {
+        const handleRecursiveCall = async (params) => {
+          const data = await RaribleAPIService.getAssetsByCollection(params)
+
+          if (data.items) {
+            assets.push(...data.items)
+          }
+
+          // prevent exceeding the max number of songs to add
+          if (maxNumberToAdd && data.continuation && assets.length + 50 <= maxNumberToAdd) {
+            await handleRecursiveCall({
+              blockchain: album.blockchain,
+              address: album.contractAddress,
+              continuation: data.continuation,
+            })
+          } else if (maxNumberToAdd === undefined && data.continuation) {
+            await handleRecursiveCall({
+              blockchain: album.blockchain,
+              address: album.contractAddress,
+              continuation: data.continuation,
+            })
+          }
+        }
+
+        await handleRecursiveCall({
+          blockchain: album.blockchain,
+          address: album.contractAddress,
+        })
+      } else {
+        const data = await RaribleAPIService.getAssetsByTokenIds({
+          tokenIds: requestBody.tokenIds,
+        })
 
         if (data.items) {
           assets.push(...data.items)
         }
-
-        // prevent exceeding the max number of songs to add
-        if (maxNumberToAdd && data.continuation && assets.length + 50 <= maxNumberToAdd) {
-          await handleRecursiveCall({
-            blockchain: album.blockchain,
-            address: album.contractAddress,
-            continuation: data.continuation,
-          })
-        } else if (maxNumberToAdd === undefined && data.continuation) {
-          await handleRecursiveCall({
-            blockchain: album.blockchain,
-            address: album.contractAddress,
-            continuation: data.continuation,
-          })
-        }
       }
-
-      await handleRecursiveCall({
-        blockchain: album.blockchain,
-        address: album.contractAddress,
-      })
 
       songPayload = await extractRaribleMusicAssets(assets, albumId, album.artistId)
     }

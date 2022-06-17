@@ -10,6 +10,10 @@ export interface GetAssetsByCollectionRequestBody {
   continuation?: string
 }
 
+export interface GetAssetsByTokenIdsRequestBody {
+  tokenIds: { tokenBlockchain?: string; tokenContractAddress?: string; tokenId: string }[]
+}
+
 export interface GetCollectionByIdRequestBody {
   blockchain: string
   address: string
