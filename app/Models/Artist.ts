@@ -3,6 +3,7 @@ import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:
 import User from './User'
 import Album from './Album'
 import Song from './Song'
+import ArtistCollectionSubmission from './ArtistCollectionSubmission'
 
 export default class Artist extends BaseModel {
   @column({ isPrimary: true })
@@ -34,6 +35,11 @@ export default class Artist extends BaseModel {
     foreignKey: 'artistId',
   })
   public songs: HasMany<typeof Song>
+
+  @hasMany(() => ArtistCollectionSubmission, {
+    foreignKey: 'artistId',
+  })
+  public collectionSubmissions: HasMany<typeof ArtistCollectionSubmission>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

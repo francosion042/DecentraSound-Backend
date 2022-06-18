@@ -15,13 +15,21 @@ export default class ArtistCollectionSubmissions extends BaseSchema {
 
       table.string('blockchain')
 
-      table.string('contractType')
+      table.string('contractType') // [ERC721, ERC1155]
 
       table.text('contractAddress')
 
       table.string('openseaCollectionSlug')
 
       table.text('collectionUrl')
+
+      table.integer('numOfTokensToUpload')
+
+      table.jsonb('tokensToUpload')
+
+      table.boolean('isApproved').defaultTo(false)
+
+      table.string('approvalStatus')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

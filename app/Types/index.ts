@@ -29,3 +29,9 @@ export interface AlbumPayload {
   releaseDate: DateTime
   isSpecial?: boolean
 }
+
+export interface CollectionSubmissionToken {
+  tokenBlockchain?: string
+  tokenContractAddress?: string
+  tokenId: string
+}

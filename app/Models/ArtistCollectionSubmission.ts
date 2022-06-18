@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import Genre from './Genre'
 import Artist from './Artist'
+import { CollectionSubmissionToken } from 'App/Types'
 
 export default class ArtistCollectionSubmission extends BaseModel {
   @column({ isPrimary: true })
@@ -30,6 +31,20 @@ export default class ArtistCollectionSubmission extends BaseModel {
 
   @column()
   public collectionUrl: string
+
+  @column()
+  public numOfTokensToUpload: number
+
+  @column({
+    prepare: (tokensToUpload) => (tokensToUpload ? JSON.stringify(tokensToUpload) : tokensToUpload),
+  })
+  public tokensToUpload: CollectionSubmissionToken[]
+
+  @column()
+  public isApproved: boolean
+
+  @column()
+  public approvalStatus: string
 
   @belongsTo(() => Artist, {
     foreignKey: 'artistId',
