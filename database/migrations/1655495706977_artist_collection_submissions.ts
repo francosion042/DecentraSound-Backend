@@ -19,9 +19,9 @@ export default class ArtistCollectionSubmissions extends BaseSchema {
 
       table.text('contractAddress')
 
-      table.string('openseaCollectionSlug')
+      table.string('openseaSlug')
 
-      table.text('collectionUrl')
+      table.text('marketPlaceCollectionUrl')
 
       table.integer('numOfTokensToUpload')
 

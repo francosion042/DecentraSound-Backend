@@ -27,10 +27,10 @@ export default class ArtistCollectionSubmission extends BaseModel {
   public contractAddress: string
 
   @column()
-  public openseaCollectionSlug: string
+  public openseaSlug: string
 
   @column()
-  public collectionUrl: string
+  public marketPlaceCollectionUrl: string
 
   @column()
   public numOfTokensToUpload: number
