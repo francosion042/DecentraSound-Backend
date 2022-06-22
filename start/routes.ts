@@ -20,6 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+import './routes/adminDashboard'
+import './routes/artistDashboard'
+
 import './routes/user'
 import './routes/artist'
 import './routes/genre'
